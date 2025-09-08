@@ -1,6 +1,252 @@
-/******* Change Box Model ***************/
-*,
-*:before,
-*:after {
+
+*{
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif;
+  color: #333;
+  line-height: 1.5;
+
+  
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed; /* keeps image in place while scrolling */
+}
+
+.background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('/images/site/checkerboard.jpg');
+  /* Replace with your actual path */
+  background-size: cover;
+  background-position: center;
+  z-index: 0;
+}
+
+#wrapper {
+  position: relative;
+  z-index: 1;
+  background-color: white;
+  max-width: 960px;
+  margin: 2rem auto;
+  padding: 2rem;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+
+}
+
+
+
+
+
+
+/* Header */
+#top-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background: #fff;
+}
+
+.siteName a {
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-decoration: none;
+  color: #333;
+}
+
+#tools a {
+  font-size: 0.9rem;
+  text-decoration: none;
+  color: #333;
+}
+
+/* Navigation */
+nav ul {
+  display: flex;
+  justify-content: space-around;
+  background: #333;
+  padding: 0.5rem 0;
+}
+
+nav ul li {
+  list-style: none;
+  color: #fff;
+  font-size: 1rem;
+}
+
+/* Main Content */
+main {
+  flex: 1;
+  padding: 1rem;
+}
+
+/* Hero Section */
+.hero {
+  text-align: center;
+  position: relative;
+    padding: 2rem;
+
+
+}
+
+.hero h1 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+.hero-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0 auto 1rem;
+  position: relative;
+  z-index: 1;
+}
+
+
+
+/* Reviews Section */
+.reviews {
+  margin-top: 2rem;
+}
+
+.reviews h2 {
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+
+
+.reviews li {
+  margin-bottom: 0.75rem;
+}
+
+.rating {
+  font-weight: bold;
+  margin-left: 0.5rem;
+}
+
+
+
+/* Upgrades Section */
+.upgrades {
+  margin-top: 1rem;
+}
+
+.upgrades h2 {
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+/* Card Grid: 2 columns on mobile */
+.upgrades-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem;
+}
+
+/* Card Styles */
+.card {
+  background: #e6f9ec;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 1rem;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+}
+
+.card:hover {
+  transform: scale(1.02);
+}
+
+.card img {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 0.5rem;
+}
+
+.card span {
+  display: block;
+  font-size: 0.95rem;
+
+  font-weight: 500;
+color: #004080;
+
+}
+
+/* Footer */
+#site-footer {
+  text-align: center;
+  padding: 1rem;
+  background: #f5f5f5;
+}
+
+
+
+.car-card {
+  
+border-radius: 12px;
+  padding: 1rem;
+  max-width: 200px;
+  margin: 2rem auto;
+  text-align: center;
+  position: absolute;
+    top: 15%;
+    z-index: 2;
+    right: 70%;
+
+background-color: rgba(255, 255, 255, 0.596);
+  
+  
+
+
+}
+
+.car-card h2 {
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  color: #222;
+}
+
+.features {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.features li {
+  border-radius: 8px;
+  color: #004080;
+
+
+  
+}
+
+
+
+
+.btn {
+  display: inline-block;
+  margin-top: 1.5rem;
+  padding: 0.75rem 1.5rem;
+  background-color: #004080;
+  color: #fff;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: bold;
 }

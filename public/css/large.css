@@ -1,0 +1,159 @@
+/* public/css/large.css */
+
+/* Desktop/Tablets: min width 768px */
+@media screen and (min-width: 768px) {
+
+  /* Center wrapper and constrain width */
+  #wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+   
+  }
+
+  /* Hero: two-column layout & image sizing */
+  .hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 2rem;
+    padding: 3rem 2rem;
+    text-align: left;
+  }
+
+  .hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    bottom: 80%;
+    position: absolute;
+  }
+
+  .hero-image {
+    max-width: 70%;
+    height: auto;
+    margin: 0; 
+    left: 30%;
+    position: relative;
+    z-index: 1;
+  
+
+}
+
+  
+  .features li {
+    font-size: 1.1rem;
+    margin-bottom: 0.75rem;
+  
+}
+
+  .btn {
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+  }
+
+  /* Reviews & Upgrades: side by side */
+  .reviews,
+  .upgrades {
+    width: 48%;
+    float: left;
+    padding: 2rem;
+    background: #fafafa;
+    border-radius: 8px;
+  }
+
+  .reviews {
+    float: right;
+  }
+
+  .reviews h2,
+  .upgrades h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .reviews li {
+    font-size: 1.05rem;
+    margin-bottom: 0.75rem;
+  }
+
+  /* Upgrades grid: 2×2 layout */
+  .upgrades-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    
+  }
+
+  .upgrades-grid img {
+    max-width: 60%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+  }
+
+  .upgrades-grid span {
+    display: block;
+    margin-top: 0.5rem;
+    font-size: 1rem;
+  }
+
+  /* Footer padding */
+  #site-footer {
+    padding: 2rem 0;
+    font-size: 0.95rem;
+  }
+
+
+.car-card {
+    border-radius: 12px;
+    padding: 1rem;
+    max-width: 200px;
+    margin: 1rem auto;
+    text-align: center;
+    background: #f6f3f360;
+    position: relative;
+    right: 110%;
+    z-index: 10;
+
+}
+
+
+
+
+.car-card h2 {
+    font-size: 1rem;
+    color: #222;
+}
+
+
+
+.btn {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.5rem;
+    background-color: #004080;
+    color: #fff;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.hero-image {
+    width: 100%;
+    /* max-width: 300px; */
+    height: auto;
+    margin: 0 auto 1rem;
+    right: 90%;
+    width: 100%;
+    height: auto;
+    display: block;
+    z-index: 1;
+    position: relative;
+
+
+
+}
+
+
+
+
+}
