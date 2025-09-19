@@ -72,18 +72,28 @@ body {
   color: #333;
 }
 
-/* Navigation */
 nav ul {
+  list-style: none;
   display: flex;
   justify-content: space-around;
-  background: #333;
-  padding: 0.5rem 0;
+  gap: 2rem;
+  margin: 0;
+  padding: 1rem 0;
+  background-color: #1e1e2f;
 }
 
-nav ul li {
-  list-style: none;
-  color: #fff;
-  font-size: 1rem;
+nav li {
+  font-weight: 500;
+}
+
+nav a {
+  color: #ffffff;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+nav a:hover {
+  color: #00bcd4;
 }
 
 /* Main Content */
@@ -249,4 +259,67 @@ background-color: rgba(255, 255, 255, 0.596);
   border-radius: 6px;
   text-decoration: none;
   font-weight: bold;
+}
+
+
+
+
+/* Container grid */
+#inv-display {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2rem;
+  padding: 2rem;
+  list-style: none;
+  margin: 0;
+}
+
+/* Individual card */
+#inv-display li {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#inv-display li:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+/* Image styling */
+#inv-display img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Text content */
+.namePrice {
+  padding: 1rem;
+  text-align: center;
+}
+
+.namePrice h2 {
+  font-size: 1.1rem;
+  margin: 0.5rem 0;
+  color: #333;
+}
+
+.namePrice a {
+  text-decoration: none;
+  color: #0077cc;
+  font-weight: 600;
+}
+
+.namePrice a:hover {
+  color: #005fa3;
+}
+
+.namePrice span {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  color: #444;
 }
