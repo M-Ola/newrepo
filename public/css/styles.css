@@ -309,12 +309,12 @@ background-color: rgba(255, 255, 255, 0.596);
 
 .namePrice a {
   text-decoration: none;
-  color: #0077cc;
+  color: #004080;
   font-weight: 600;
 }
 
 .namePrice a:hover {
-  color: #005fa3;
+  color: #004080;
 }
 
 .namePrice span {
@@ -322,4 +322,39 @@ background-color: rgba(255, 255, 255, 0.596);
   margin-top: 0.5rem;
   font-size: 1rem;
   color: #444;
+}
+
+
+.error-message {
+  color: #c0392b;
+  font-weight: bold;
+  margin: 1rem 0;
+  text-align: center;
+}
+
+.humor {
+  text-align: center;
+  font-style: italic;
+  color: #555;
+}
+
+
+.vehicle-detail {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 1rem;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.vehicle-detail img {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+}
+
+.vehicle-info p {
+  font-size: 1.1rem;
+  margin: 0.5rem 0;
 }
