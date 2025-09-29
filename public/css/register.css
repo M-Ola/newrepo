@@ -62,3 +62,16 @@
 }
 
 
+.error-list {
+  background-color: #ffe6e6;
+  border-left: 4px solid #cc0000;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 4px;
+  color: #cc0000;
+}
+
+.error-list ul {
+  margin: 0;
+  padding-left: 1.2rem;
+}
