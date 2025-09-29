@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('../partials/head') %>
+  <body>
+    <div id="wrapper">
+      <%- include('../partials/header') %>
+      <%- include('../partials/navigation') %>
+
+      <main>
+        <h1>Vehicle Management</h1>
+
+        <% if (message && message.length > 0) { %>
+          <div class="flash-message"><%= message %></div>
+        <% } %>
+
+        <ul class="management-links">
+          <li><a href="/inv/add-classification">Add New Classification</a></li>
+          <li><a href="/inv/add-inventory">Add New Inventory</a></li>
+        </ul>
+      </main>
+
+      <%- include('../partials/footer') %>
+    </div>
+  </body>
+</html>

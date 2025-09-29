@@ -1,0 +1,106 @@
+/* Shared form container */
+.classification-form,
+.inventory-form {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: #f9fbff;
+    border: 1px solid #dbe2ea;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* Headings */
+.classification-form h1,
+.inventory-form h1 {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    color: #333;
+}
+
+/* Labels and inputs */
+.classification-form label,
+.inventory-form label {
+    display: block;
+    margin-top: 1rem;
+    font-weight: 600;
+    color: #444;
+}
+
+.classification-form input,
+.inventory-form input,
+.inventory-form textarea,
+.inventory-form select {
+    width: 100%;
+    padding: 0.75rem;
+    margin-top: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+    background-color: #fff;
+    transition: border-color 0.2s ease;
+}
+
+.inventory-form textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.classification-form input:focus,
+.inventory-form input:focus,
+.inventory-form textarea:focus,
+.inventory-form select:focus {
+    border-color: #0077cc;
+    outline: none;
+}
+
+/* Buttons */
+.classification-form button,
+.inventory-form button {
+    margin-top: 2rem;
+    padding: 0.75rem 1.5rem;
+    background-color: #0077cc;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.classification-form button:hover,
+.inventory-form button:hover {
+    background-color: #005fa3;
+}
+
+/* Flash and error messages */
+.flash-message,
+.error-list {
+    margin-bottom: 1rem;
+    padding: 1rem;
+    border-radius: 6px;
+    font-size: 0.95rem;
+}
+
+.flash-message {
+    background-color: #e6f7ff;
+    color: #005fa3;
+    border-left: 4px solid #0077cc;
+}
+
+.error-list {
+    background-color: #ffe6e6;
+    color: #cc0000;
+    border-left: 4px solid #cc0000;
+}
+
+.error-list ul {
+    margin: 0;
+    padding-left: 1.2rem;
+}
+
+.label_class{
+
+    color: rgb(32, 30, 30);
+}

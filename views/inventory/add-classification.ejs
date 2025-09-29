@@ -1,0 +1,31 @@
+<form action="/inv/add-classification" method="post" class="classification-form" novalidate>
+  <h1>Add New Classification</h1>
+
+  <% if (message && message.length > 0) { %>
+    <div class="flash-message"><%= message %></div>
+  <% } %>
+
+  <% if (errors && errors.length > 0) { %>
+    <ul class="error-list">
+      <% errors.forEach(error => { %>
+        <li><%= error.msg %></li>
+      <% }) %>
+    </ul>
+  <% } %>
+
+  <label for="classification_name">Classification Name:</label>
+ <p class="label_class">
+            Name must be alphabetic only
+          </p>
+  <input
+    type="text"
+    id="classification_name"
+    name="classification_name"
+    required
+    pattern="^[a-zA-Z0-9]+$"
+    title="No spaces or special characters allowed."
+    value="<%= typeof classification_name !== 'undefined' ? classification_name : '' %>"
+  />
+
+  <button type="submit">Add Classification</button>
+</form>
