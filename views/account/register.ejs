@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="en">
   <%- include('../partials/head') %>
   <body>
@@ -10,18 +10,16 @@
       <main class="register-container">
         <h1><%= title %></h1>
 
-        <div class="flash-message"><%- messages() %></div>
-
-       <% if (errors && errors.length > 0) { %>
-  <div class="error-list">
-    <ul class="notice">
-      <% errors.forEach(error => { %>
-        <li><%= error.msg %></li>
-      <% }) %>
-    </ul>
-  </div>
-<% } %>
-
+        <%- messages() %> <% if (errors && errors.length > 0) { %>
+        
+          <div class="error-list">
+          <ul class="notice">
+            <% errors.forEach(error => { %>
+            <li><%= error.msg %></li>
+            <% }) %>
+          </ul>
+        </div>
+        <% } %>
 
         <form action="/account/register" method="post" class="register-form">
           <label for="account_firstname">First name:</label>
@@ -29,27 +27,27 @@
             type="text"
             id="account_firstname"
             name="account_firstname"
-            required value="<%= locals.account_firstname %>" >
+            required
+            value="<%= locals.account_firstname %>"
+          />
 
           <label for="account_lastname">Last name:</label>
           <input
             type="text"
             id="account_lastname"
             name="account_lastname"
-            required value="<%= locals.account_lastname %>"
-          
-           
-            />
+            required
+            value="<%= locals.account_lastname %>"
+          />
 
           <label for="account_email">Email address:</label>
           <input
             type="email"
             id="account_email"
             name="account_email"
-           required value="<%= locals.account_email  %>"
-         
-         
-            />
+            required
+            value="<%= locals.account_email  %>"
+          />
 
           <label for="account_password">Password:</label>
 
@@ -89,3 +87,6 @@
     </script>
   </body>
 </html>
+ 
+
+ 
