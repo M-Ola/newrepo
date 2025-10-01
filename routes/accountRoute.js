@@ -19,21 +19,33 @@ router.post('/register', regValidate.registationRules(),
     regValidate.checkRegData, utilities.handleErrors(accountController.registerAccount))
   
 
-/* // Process the login attempt
+ // Process the login attempt
 router.post(
   "/login",
-  (req, res) => {
-    res.status(200).send('login process')
-  }
-)
+  regValidate.loginRules(),
+  regValidate.checkLoginData,
+  utilities.handleErrors(accountController.accountLogin)
+);
 
- */
-router.post(
+ 
+// Default account management view
+router.get("/", utilities.checkLogin, accountController.buildAccountManagement);
+
+
+
+
+
+
+
+/* router.post(
   "/login",
   loginValidate .loginRules(),
   loginValidate.loginRules(), loginValidate.checkLoginData,
   utilities.handleErrors(accountController.loginAccount)
-);
+); */
+
+
+
 
 
 

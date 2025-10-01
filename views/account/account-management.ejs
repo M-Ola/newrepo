@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('../partials/head') %>
+</head>
+<body>
+  <div class="background"></div>
+  <div id="wrapper">
+    <%- include('../partials/header') %>
+    <%- include('../partials/navigation') %>
+
+    <main class="account-container">
+      <h1><%= title %></h1>
+
+      <% if (typeof message !== 'undefined' && message.length > 0) { %>
+        <div class="flash-message"><%= message %></div>
+      <% } %>
+
+      <% if (errors && errors.length > 0) { %>
+        <div class="error-list">
+          <ul class="notice">
+            <% errors.forEach(error => { %>
+              <li><%= error.msg %></li>
+            <% }) %>
+          </ul>
+        </div>
+      <% } %>
+
+      <p>You're logged in.</p>
+    </main>
+
+    <%- include('../partials/footer') %>
+  </div>
+</body>
+</html>
