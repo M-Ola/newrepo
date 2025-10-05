@@ -60,6 +60,15 @@
     </div>
  
  
- 
+  <script>
+      const toggleBtn = document.getElementById("togglePassword");
+      const passwordInput = document.getElementById("account_password");
+
+      toggleBtn.addEventListener("click", () => {
+        const isHidden = passwordInput.type === "password";
+        passwordInput.type = isHidden ? "text" : "password";
+        toggleBtn.textContent = isHidden ? "Hide Password" : "Show Password";
+      });
+    </script>
   </body>
 </html>

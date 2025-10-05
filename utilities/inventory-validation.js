@@ -78,28 +78,6 @@ validate.inventoryRules = () => [
     .withMessage("Thumbnail path is required."),
 ];
 
-validate.checkInventoryData = async (req, res, next) => {
-  const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    const nav = await utilities.getNav();
-    const classificationList = await utilities.buildClassificationList(
-      req.body.classification_id
-    );
-    res.render("inventory/add-inventory", {
-      title: "Add Inventory",
-      nav,
-      errors: errors.array(),
-      message: req.flash("message"),
-      classificationList,
-      ...req.body, // sticky values
-    });
-    return;
-  }
-  next();
-};
-
-module.exports = validate;
-
 
 validate.checkInventoryData = async (req, res, next) => {
   const errors = validationResult(req);
@@ -120,6 +98,38 @@ validate.checkInventoryData = async (req, res, next) => {
   }
   next();
 };
+
+
+
+/* ******************************
+ * Check data and return errors or continue to update inventory
+ * ***************************** */
+validate.checkUpdateData = async (req, res, next) => {
+  const errors = validationResult(req);
+  const { inv_id } = req.body; // 
+
+  if (!errors.isEmpty()) {
+    const nav = await utilities.getNav();
+    const classificationList = await utilities.buildClassificationList(
+      req.body.classification_id
+    );
+
+    const name = `${req.body.inv_make} ${req.body.inv_model}`;
+
+    res.render("inventory/edit-inventory", {
+      title: `Edit ${name}`, // 
+      nav,
+      errors: errors.array(),
+      message: req.flash("message"),
+      classificationList,
+      inv_id, //  keeps track of the item being edited
+      ...req.body, // sticky values so the form doesn’t reset
+    });
+    return;
+  }
+  next();
+};
+
 
 
 module.exports = validate;

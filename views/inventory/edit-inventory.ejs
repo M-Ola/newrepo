@@ -1,5 +1,5 @@
 
-<form action="/inv/update" method="post" class="inventory-form" novalidate>
+<form action="/inv/update" method="post" class="inventory-form"  id="updateForm"   novalidate >
   <h1>Edit Vehicle</h1>
 
   <% if (message && message.length > 0) { %>
@@ -14,7 +14,7 @@
     </ul>
   <% } %>
 
-  <input type="hidden" name="inv_id" value="<%= inv_id %>">
+ 
 <label for="classificationSelect">Classification:</label>
   <%- classificationSelect %>
 
@@ -42,9 +42,11 @@
    <label for="inv_image">Image Path:</label>
   <input type="text" name="inv_image" id="inv_image" required placeholder="/images/vehicles/no-image.png" value="<%= inv_image || '/images/vehicles/no-image.png' %>">
 
-  <label for="inv_thumbnail">Thumbnail Path:</label>
-  <input type="text" name="inv_thumbnail" id="inv_thumbnail" required placeholder="/images/vehicles/no-image-tn.png" value="<%= inv_thumbnail || '/images/vehicles/no-image-tn.png' %>">
+<label for="inv_thumbnail">Thumbnail Path:</label>
+<input type="text" name="inv_thumbnail" id="inv_thumbnail" required placeholder="/images/vehicles/no-image-tn.png" value="<%= inv_thumbnail || '/images/vehicles/no-image-tn.png' %>">
 
-  <input type="hidden" name="inv_id" value="<%= inv_id %>">
-  <button type="submit">Update Vehicle</button>
+<input type="hidden" name="inv_id" value="<%= inv_id %>">
+
+<button type="submit"  disabled>Update Vehicle</button>
 </form>
+<script src="/js/inv-update.js"></script>

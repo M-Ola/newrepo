@@ -53,11 +53,15 @@ router.get(
   "/edit/:inv_id",
   utilities.handleErrors(invController.buildEditInventory)
 );
+
+
+
+
 // Route to handle inventory update
 router.post(
   "/update",
   inventoryValidate.inventoryRules(),
-  inventoryValidate.checkInventoryData,
+  inventoryValidate.checkUpdateData,
   utilities.handleErrors(invController.updateInventory)
 );
 

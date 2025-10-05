@@ -61,7 +61,7 @@ if (process.env.NODE_ENV === "development") {
   })
 }
 
-// ✅ Consistent export for all environments
+
 module.exports = {
   query: async (text, params) => {
     try {
@@ -109,5 +109,5 @@ module.exports = {
       throw error
     }
   },
-  pool, // optional: useful for connect-pg-simple or transactions
+  pool, 
 }
