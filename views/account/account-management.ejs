@@ -26,7 +26,21 @@
         </div>
       <% } %>
 
-      <p>You're logged in.</p>
+      <!-- Personalized greeting -->
+      <h2>Welcome <%= account.account_firstname %></h2>
+
+      <!-- Update account link (always visible) -->
+      <p>
+        <a href="/account/update/<%= account.account_id %>">Update Account Information</a>
+      </p>
+
+      <!-- Conditional: Inventory Management for Employee/Admin only -->
+      <% if (account.account_type === "Employee" || account.account_type === "Admin") { %>
+        <h3>Inventory Management</h3>
+        <p>
+          <a href="/inv">Manage Inventory</a>
+        </p>
+      <% } %>
     </main>
 
     <%- include('../partials/footer') %>

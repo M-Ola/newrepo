@@ -1,7 +1,10 @@
 const utilities = require(".");
 const accountModel = require("../models/account-model");
 const { body, validationResult } = require("express-validator");
+const jwt = require("jsonwebtoken");
 const validate = {};
+const { getAccountByEmail } = require("../models/account-model");
+const accountController = require("../controllers/accountController");
 
 /*  **********************************
  *  Registration Data Validation Rules
@@ -39,7 +42,7 @@ validate.registationRules = () => {
         }
       }),
 
-    // password is required and must be strong password
+    
     body("account_password")
       .trim()
       .notEmpty()
@@ -66,7 +69,6 @@ validate.loginRules = () => {
       .normalizeEmail() // refer to validator.js docs
       .withMessage("A valid email is required."),
 
-    // password is required and must be strong password
     body("account_password")
       .trim()
       .notEmpty()
@@ -82,11 +84,10 @@ validate.loginRules = () => {
 };
 
 /* ******************************
- * Check data and return errors or continue to registration
+ * Check data registration rules
  * ***************************** */
 validate.checkRegData = async (req, res, next) => {
   const { account_firstname, account_lastname, account_email } = req.body;
-  //let errors = [];
   errors = validationResult(req);
   if (!errors.isEmpty()) {
     let nav = await utilities.getNav();
@@ -104,9 +105,8 @@ validate.checkRegData = async (req, res, next) => {
 };
 
 
-
 /* ******************************
- * Check data and return errors or continue to registration
+ * Check login data rules
  * ***************************** */
 validate.checkLoginData = async (req, res, next) => {
   const { account_email } = req.body;
@@ -124,5 +124,91 @@ validate.checkLoginData = async (req, res, next) => {
   }
   next();
 };
+
+
+/* ******************************
+ * Check update account rules
+ * ***************************** */
+validate.updateAccountRules = () => {
+  return [
+    body("account_firstname")
+      .trim()
+      .isLength({ min: 2 })
+      .withMessage("First name must be at least 2 characters."),
+    body("account_lastname")
+      .trim()
+      .isLength({ min: 2 })
+      .withMessage("Last name must be at least 2 characters."),
+    body("account_email")
+      .isEmail()
+      .withMessage("A valid email is required.")
+      .custom(async (email, { req }) => {
+        const existing = await accountModel.getAccountByEmail(email);
+        if (existing && existing.account_id != req.params.account_id) {
+          throw new Error("Email already in use.");
+        }
+      }),
+  ];
+};
+
+/* ******************************
+ * Check password rules
+ * ***************************** */
+validate.passwordRules = () => {
+  return [
+    body("account_password")
+      .isLength({ min: 8 })
+      .withMessage("Password must be at least 8 characters.")
+      .matches(/[0-9]/)
+      .withMessage("Password must contain a number.")
+      .matches(/[A-Z]/)
+      .withMessage("Password must contain an uppercase letter.")
+      .matches(/[!@#$%^&*]/)
+      .withMessage("Password must contain a special character."),
+  ];
+};
+
+
+/* ******************************
+ * Check updated data rules
+ * ***************************** */
+validate.checkUpdateData = async (req, res, next) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    const account = await accountModel.getAccountById(req.params.account_id);
+    const nav = await require("../utilities").getNav();
+    return res.render("account/update-account", {
+      title: "Update Account Information",
+      nav,
+      errors: errors.array(),
+      message: req.flash("message"),
+      account,
+      account_id: account.account_id,
+    });
+  }
+  next();
+};
+
+/* ******************************
+ * Check password data
+ * ***************************** */
+validate. checkPasswordData = async (req, res, next) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    const account = await accountModel.getAccountById(req.params.account_id);
+    const nav = await require("../utilities").getNav();
+    return res.render("account/update-account", {
+      title: "Update Account Information",
+      nav,
+      errors: errors.array(),
+      message: req.flash("message"),
+      account,
+      account_id: account.account_id,
+    });
+  }
+  next();
+};
+
+
 
 module.exports = validate;

@@ -18,6 +18,7 @@ const db = require("./database/")
 const accountRoute = require('./routes/accountRoute')
 const bodyParser = require("body-parser")
 const cookieParser = require("cookie-parser");
+const jwt = require("jsonwebtoken");
 
 
 /* ***********************
@@ -47,6 +48,33 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
 app.use(cookieParser())
 app.use(utilities.checkJWTToken);
+app.use(cookieParser());
+
+//Middleware to parse the JWT cookie, verify it, and expose login state via res.locals.
+
+app.use((req, res, next) => {
+  const token = req.cookies.jwt;
+  if (token) {
+    try {
+      const decoded = jwt.verify(token, process.env.JWT_SECRET);
+      res.locals.loggedIn = true;
+      res.locals.account_id = decoded.account_id;
+      res.locals.account_firstname = decoded.account_firstname;
+      res.locals.account_type = decoded.account_type;
+    } catch (err) {
+      res.locals.loggedIn = false;
+      res.locals.account_id = null;
+      res.locals.account_firstname = null;
+      res.locals.account_type = null;
+    }
+  } else {
+    res.locals.loggedIn = false;
+    res.locals.account_id = null;
+    res.locals.account_firstname = null;
+    res.locals.account_type = null;
+  }
+  next();
+});
 
 
 

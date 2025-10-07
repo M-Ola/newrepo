@@ -1,0 +1,96 @@
+/* Container */
+.account-container {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: #fff;
+    border-radius: 6px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Headings */
+.account-container h1 {
+    margin-bottom: 1.5rem;
+    font-size: 1.8rem;
+    color: #333;
+}
+
+.form-section {
+    margin-bottom: 2rem;
+}
+
+.form-section h2 {
+    margin-bottom: 1rem;
+    font-size: 1.4rem;
+    color: #444;
+}
+
+.form-hint {
+    font-size: 0.9rem;
+    color: #232222;
+    margin-bottom: 1rem;
+}
+
+/* Form groups */
+.update-form .form-group {
+    margin-bottom: 1rem;
+}
+
+.update-form label {
+    display: block;
+    margin-bottom: 0.4rem;
+    font-weight: 600;
+    color: #2f2e2e;
+}
+
+.update-form input[type="text"],
+.update-form input[type="email"],
+.update-form input[type="password"] {
+    width: 100%;
+    padding: 0.6rem;
+    border: 1px solid #111010;
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: border-color 0.2s;
+}
+
+.update-form input:focus {
+    border-color: #0078d7;
+    outline: none;
+}
+
+/* Buttons */
+.btn-primary {
+    display: inline-block;
+    padding: 0.7rem 1.2rem;
+    background: #0b1f3a;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+   
+}
+
+.btn-primary:hover {
+    background: #0b1f3a;
+}
+
+/* Flash and error messages */
+.flash-message {
+    background: #e6f4ea;
+    border: 1px solid #022303;
+    color: #033906;
+    padding: 0.8rem;
+    margin-bottom: 1rem;
+    border-radius: 4px;
+}
+
+.error-list {
+    background: #fdecea;
+    border: 1px solid #f5c2c0;
+    color: #b71c1c;
+    padding: 0.8rem;
+    margin-bottom: 1rem;
+    border-radius: 4px;
+}
