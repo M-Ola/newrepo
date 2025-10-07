@@ -29,7 +29,7 @@ const jwt = require("jsonwebtoken");
     createTableIfMissing: true,
     pool: db.pool,
   }),
-  secret: process.env.ACCESS_TOKEN_SECRET,
+  secret: process.env.SESSION_SECRET,
   resave: true,
   saveUninitialized: true,
   name: 'sessionId',
