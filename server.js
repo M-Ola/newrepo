@@ -29,7 +29,7 @@ const jwt = require("jsonwebtoken");
     createTableIfMissing: true,
     pool: db.pool,
   }),
-  secret: process.env.SESSION_SECRET,
+  secret: process.env.ACCESS_TOKEN_SECRET,
   resave: true,
   saveUninitialized: true,
   name: 'sessionId',
@@ -56,7 +56,7 @@ app.use((req, res, next) => {
   const token = req.cookies.jwt;
   if (token) {
     try {
-      const decoded = jwt.verify(token, process.env.JWT_SECRET);
+      const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
       res.locals.loggedIn = true;
       res.locals.account_id = decoded.account_id;
       res.locals.account_firstname = decoded.account_firstname;
@@ -86,7 +86,6 @@ app.use(expressLayouts)
 app.set("layout", "./layouts/layout") // not at view root
 app.use("/inv", inventoryRoute)
 app.use('/account', accountRoute)
-
 
 
 /* ***********************
@@ -128,8 +127,6 @@ app.use(async (err, req, res, next) => {
     nav
   });
 });
-
-
 
 
 /* ***********************
