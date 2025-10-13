@@ -40,6 +40,8 @@ function checkAccountType(req, res, next) {
 
 
 
+
+
 function requireAuth(req, res, next) {
   const token = req.cookies?.jwt;
   if (!token) {

@@ -10,7 +10,17 @@
       <main>
          <h1><%= title %></h1>
        
-        <%- vehicleHTML %>
+       
+      <%- vehicleHTML %>
+
+<% if (isFavorite) { %>
+  <a href="/inv/unfavorite/<%= inv_id %>" class="btn">Remove from Favorites</a>
+<% } else { %>
+  <a href="/inv/favorite/<%= inv_id %>" class="btn">Add to Favorites</a>
+<% } %>
+
+      
+      
       </main>
 
       <%- include('../partials/footer') %>

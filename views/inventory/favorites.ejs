@@ -1,0 +1,25 @@
+
+<!-- favorite view -->
+
+<h1>My Favorite Vehicles</h1>
+
+<% if (message) { %>
+  <div class="flash-message"><%= message %></div>
+<% } %>
+
+<% if (favorites.length === 0) { %>
+  <p>You have no favorite vehicles yet.</p>
+<% } else { %>
+  <ul>
+    <% favorites.forEach(item => { %>
+      <li>
+        <%= item.inv_make %> <%= item.inv_model %> - $<%= item.inv_price %>
+        <a href="/inv/detail/<%= item.inv_id %>">View</a> |
+        <a href="/inv/unfavorite/<%= item.inv_id %>">Remove</a>
+      </li>
+    <% }) %>
+  </ul>
+<% } %>
+
+
+

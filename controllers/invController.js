@@ -1,6 +1,7 @@
 const invModel = require("../models/inventory-model");
 const utilities = require("../utilities/");
 const invCont = {};
+const favoritesModel = require("../models/favorites-model");
 
 /* ***************************
  *  Build inventory by classification view
@@ -27,19 +28,35 @@ invCont.buildByClassificationId = async function (req, res, next) {
  *  Build detail view by id
  * ************************** */
 invCont.buildDetailView = async function (req, res, next) {
-  const inv_id = parseInt(req.params.inv_id);
-  const nav = await utilities.getNav();
-  const vehicleData = await invModel.getVehicleById(inv_id);
-  const vehicleHTML = await utilities.buildVehicleDetail(vehicleData);
-  const title = `${vehicleData.inv_make} ${vehicleData.inv_model}`;
+  try {
+    const inv_id = parseInt(req.params.inv_id);
+    const nav = await utilities.getNav();
+    const vehicleData = await invModel.getVehicleById(inv_id);
+    const vehicleHTML = await utilities.buildVehicleDetail(vehicleData);
+    const title = `${vehicleData.inv_make} ${vehicleData.inv_model}`;
 
-  res.render("./inventory/detail", {
-    title,
-    nav,
-    vehicleHTML,
-  });
+    let isFav = false;
+    if (res.locals.accountData) {
+      const account_id = res.locals.accountData.account_id;
+      isFav = await favoritesModel.isFavorite(account_id, inv_id);
+    }
+
+    res.render("./inventory/detail", {
+      title,
+      nav,
+      vehicleHTML,
+      inv_id,
+      isFavorite: isFav,
+      message: req.flash("message") || null,
+    });
+  } catch (err) {
+    next(err);
+  }
 };
 
+/* ***************************
+ *  Build management view
+ * ************************** */
 invCont.buildManagement = async function (req, res, next) {
   const nav = await utilities.getNav();
   let classificationSelect = await utilities.buildClassificationList();
@@ -51,31 +68,51 @@ invCont.buildManagement = async function (req, res, next) {
   });
 };
 
-invCont.buildAddClassification = async function (req, res) {
-  const nav = await utilities.getNav();
-  res.render("inventory/add-classification", {
-    title: "Add Classification",
-    nav,
-    errors: null,
-    message: req.flash("message") || null,
-  });
+/* ***************************
+ *  Build add classification
+ * ************************** */
+
+invCont.buildAddClassification = async function (req, res, next) {
+  try {
+    const nav = await utilities.getNav();
+    res.render("inventory/add-classification", {
+      title: "Add New Classification",
+      nav,
+      message: req.flash("message") || null,
+      errors: null,
+      classification_name: "", 
+    });
+  } catch (err) {
+    next(err);
+  }
 };
 
-invCont.insertClassification = async function (req, res) {
-  const { classification_name } = req.body;
-  const nav = await utilities.getNav();
-  const result = await invModel.addClassification(classification_name);
 
-  if (result) {
-    req.flash("message", "Classification added successfully.");
-    const updatedNav = await utilities.getNav(); // refresh nav
-    res.render("inventory/management", {
-      title: "Inventory Management",
-      nav: updatedNav,
-      message: req.flash("message"),
-    });
-  } else {
-    req.flash("message", "Failed to add classification.");
+
+invCont.insertClassification = async function (req, res, next) {
+  const { classification_name } = req.body;
+
+  try {
+    const result = await invModel.addClassification(classification_name);
+
+    if (result) {
+      req.flash("message", "Classification added successfully.");
+      // Redirect to management dashboard so buildManagement prepares everything
+      res.redirect("/inv");
+    } else {
+      req.flash("message", "Failed to add classification.");
+      const nav = await utilities.getNav();
+      res.render("inventory/add-classification", {
+        title: "Add Classification",
+        nav,
+        message: req.flash("message"),
+        classification_name,
+      });
+    }
+  } catch (err) {
+    console.error("Error inserting classification:", err);
+    req.flash("message", "An error occurred while adding classification.");
+    const nav = await utilities.getNav();
     res.render("inventory/add-classification", {
       title: "Add Classification",
       nav,
@@ -84,6 +121,11 @@ invCont.insertClassification = async function (req, res) {
     });
   }
 };
+
+
+
+
+
 
 invCont.buildAddInventory = async function (req, res) {
   const nav = await utilities.getNav();
