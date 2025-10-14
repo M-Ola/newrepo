@@ -66,8 +66,7 @@ function requireAuth(req, res, next) {
 
 
 
-
-
+//middleware
 function checkLogin(req, res, next) {
   const token = req.cookies?.jwt;
   if (!token) {
@@ -77,16 +76,21 @@ function checkLogin(req, res, next) {
 
   try {
     const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
+   
+    console.log("Decoded JWT:", decoded);
+    
     res.locals.loggedIn = true;
-    res.locals.account_id = decoded.account_id;
-    res.locals.account_firstname = decoded.account_firstname;
-    res.locals.account_type = decoded.account_type;
+    res.locals.accountData = {
+      account_id: decoded.account_id,
+      account_firstname: decoded.account_firstname,
+      account_type: decoded.account_type,
+    };
   } catch (err) {
     res.locals.loggedIn = false;
   }
+
   next();
 }
-
 
 
 

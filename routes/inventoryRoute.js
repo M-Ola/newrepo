@@ -15,6 +15,13 @@ router.get(
   "/type/:classificationId",
   utilities.handleErrors(invController.buildByClassificationId)
 );
+  
+
+router.get(
+  "/getInventory/:classification_id",
+  utilities.handleErrors(invController.getInventoryJSON)
+);
+
 
 // Route to build inventory by inventory-id view
 router.get(
@@ -84,7 +91,7 @@ router.post(
   utilities.handleErrors(invController.deleteInventory)
 );
 
-// Rooute to build favorites with middleware
+// Route to build favorites with middleware
 router.get("/favorites", checkLogin, favoritesController.buildFavoritesView);
 router.get("/favorite/:inv_id", checkLogin, favoritesController.addFavorite);
 router.get(
@@ -92,5 +99,13 @@ router.get(
   checkLogin,
   favoritesController.removeFavorite
 );
+
+router.get(
+  "/getInventory/:inv_id",
+  utilities.handleErrors(invController.buildDetailView)
+);
+
+
+
 
 module.exports = router;

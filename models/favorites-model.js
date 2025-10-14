@@ -33,5 +33,9 @@ async function isFavorite(account_id, inv_id) {
   return result.rowCount > 0;
 }
 
-
-module.exports = { addFavorite, removeFavorite, getFavoritesByAccount , isFavorite};
+module.exports = {
+  addFavorite,
+  removeFavorite,
+  getFavoritesByAccount,
+  isFavorite,
+};
